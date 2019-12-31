@@ -47,11 +47,13 @@ public class ReverseInteger {
 
     public static int LeetCodeSolution(int x){
         int rev = 0;
+        int upper = Integer.MAX_VALUE / 10;
+        int lower = Integer.MIN_VALUE / 10;
         while (x != 0) {
             int pop = x % 10;
             x /= 10;
-            if (rev > Integer.MAX_VALUE/10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) return 0;
-            if (rev < Integer.MIN_VALUE/10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) return 0;
+            if (rev > upper || (rev == upper && pop > 7)) return 0;
+            if (rev < lower || (rev == lower && pop < -8)) return 0;
             rev = rev * 10 + pop;
         }
         return rev;
