@@ -31,6 +31,14 @@ public class PalindromeNumber {
         System.out.println("2147447412: " + mySolution(2147447412));
     }
 
+    /**
+     * 关于反转后溢出问题
+     * （注：输入的x是不会溢出的）
+     * int最大值为2147483647。
+     * ①若x是回文数，则其不可能溢出。例：21475_57412（溢出）、21474_47412（未溢出）
+     * ②若x不是回文数，且翻转后溢出，则rev必不等于x。例：2147483646反转后为-2126087180（溢出后rev都未负数）
+     *
+     */
     public static boolean mySolution(int x) {
         //负数和最后一位为0的数不是回文数
         if (x < 0 || (x != 0 && x % 10 == 0)) return false;
