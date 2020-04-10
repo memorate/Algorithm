@@ -26,6 +26,10 @@ public class LongestCommonPrefix {
         System.out.println("result is :" + LeetSolution(input));
     }
 
+    /**
+     * input[i].startsWith()
+     * 用input[0]去检测数组中所有的元素，每次input[0]的index +1，直到input[i].startsWith()为false
+     */
     private static String MySolution(String[] input) {
         if (input == null || input.length == 0) {
             return "";
