@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Stack;
+
 /**
  * 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
  * <p>
@@ -40,14 +43,26 @@ public class ValidParentheses {
         String dd = "([)]";
         String ee = "{[]}";
         String ff = "{{)}";
-        System.out.println(MySolution1(aa));
-        System.out.println(MySolution1(bb));
-        System.out.println(MySolution1(cc));
-        System.out.println(MySolution1(dd));
-        System.out.println(MySolution1(ee));
-        System.out.println(MySolution1(ff));
+        String gg = "(([]){})";
+        System.out.println(MySolution2(aa));
+        System.out.println(MySolution2(bb));
+        System.out.println(MySolution2(cc));
+        System.out.println(MySolution2(dd));
+        System.out.println(MySolution2(ee));
+        System.out.println(MySolution2(ff));
+        System.out.println(MySolution2(gg));
     }
 
+    /**
+     * 此解法失败
+     * 大致思路：
+     * 第一次循环判断首位对称的两个char能否闭合，like this：{[]}
+     * 第二次循环判断每两个相邻的char能否闭合，like this：()[]{}
+     * 失败原因：
+     * 组合闭合无法判断，like this：(([]){})
+     * <p>
+     * 其实一开始思路就错了，应该使用栈，栈很轻松就可以解决
+     */
     public static boolean MySolution1(String s) {
         if (s.isEmpty()) return true;
         //奇数一定不能闭合
@@ -62,6 +77,7 @@ public class ValidParentheses {
             }
             result = true;
         }
+        if (result) return true;
         for (int i = 0; i < chars.length; i = i + 2) {
             int sum = chars[i] + chars[i + 1];
             if (sum != 248 && sum != 184 && sum != 81) {
@@ -73,13 +89,57 @@ public class ValidParentheses {
         return result;
     }
 
-    public static boolean MySolution2() {
-
-        return false;
+    public static boolean MySolution2(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for (int i = 0; i < s.toCharArray().length; i++) {
+            if (stack.empty()){
+                stack.push(s.charAt(i));
+                continue;
+            }
+            int sum = stack.peek() + s.charAt(i);
+            if (sum != 248 && sum != 184 && sum != 81) {
+                stack.push(s.charAt(i));
+            } else {
+                stack.pop();
+            }
+        }
+        return stack.empty();
     }
 
     public static boolean LeetCodeSolution() {
 
         return false;
+    }
+
+    public boolean isValid(String s) {
+        HashMap<Character, Character> mappings = new HashMap<Character, Character>();
+        mappings.put(')', '(');
+        mappings.put('}', '{');
+        mappings.put(']', '[');
+
+        // Initialize a stack to be used in the algorithm.
+        Stack<Character> stack = new Stack<Character>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            // If the current character is a closing bracket.
+            if (mappings.containsKey(c)) {
+
+                // Get the top element of the stack. If the stack is empty, set a dummy value of '#'
+                char topElement = stack.empty() ? '#' : stack.pop();
+
+                // If the mapping for this bracket doesn't match the stack's top element, return false.
+                if (topElement != mappings.get(c)) {
+                    return false;
+                }
+            } else {
+                // If it was an opening bracket, push to the stack.
+                stack.push(c);
+            }
+        }
+
+        // If the stack still contains elements, then it is an invalid expression.
+        return stack.isEmpty();
     }
 }
