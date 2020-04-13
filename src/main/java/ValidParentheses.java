@@ -89,9 +89,12 @@ public class ValidParentheses {
         return result;
     }
 
+    /**
+     * 使用栈来顺序检查，从s[0]开始入栈，如果s[n-1]和s[n]相匹配，出栈，最后检测栈是否为空
+     */
     public static boolean MySolution2(String s) {
         Stack<Character> stack = new Stack<Character>();
-        for (int i = 0; i < s.toCharArray().length; i++) {
+        for (int i = 0; i < s.length(); i++) {
             if (stack.empty()){
                 stack.push(s.charAt(i));
                 continue;
@@ -106,40 +109,24 @@ public class ValidParentheses {
         return stack.empty();
     }
 
-    public static boolean LeetCodeSolution() {
-
-        return false;
-    }
-
-    public boolean isValid(String s) {
+    public static boolean LeetCodeSolution(String s) {
         HashMap<Character, Character> mappings = new HashMap<Character, Character>();
         mappings.put(')', '(');
         mappings.put('}', '{');
         mappings.put(']', '[');
-
-        // Initialize a stack to be used in the algorithm.
         Stack<Character> stack = new Stack<Character>();
-
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-
-            // If the current character is a closing bracket.
+            //右括号检查是否能闭合，左括号直接入栈
             if (mappings.containsKey(c)) {
-
-                // Get the top element of the stack. If the stack is empty, set a dummy value of '#'
                 char topElement = stack.empty() ? '#' : stack.pop();
-
-                // If the mapping for this bracket doesn't match the stack's top element, return false.
                 if (topElement != mappings.get(c)) {
                     return false;
                 }
             } else {
-                // If it was an opening bracket, push to the stack.
                 stack.push(c);
             }
         }
-
-        // If the stack still contains elements, then it is an invalid expression.
         return stack.isEmpty();
     }
 }
