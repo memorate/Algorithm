@@ -11,25 +11,49 @@
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class MergeTwoSortedLists {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
     }
 
+    /**
+     * 递归
+     */
     public static ListNode LeetCodeSolution1(ListNode l1, ListNode l2) {
-        if (l1 == null){
+        if (l1 == null) {
             return l2;
-        }else if(l2 == null){
+        } else if (l2 == null) {
             return l1;
-        }else if (l1.val<l2.val){
-            l1.next = LeetCodeSolution1(l1.next,l2);
+        } else if (l1.val < l2.val) {
+            l1.next = LeetCodeSolution1(l1.next, l2);
             return l1;
-        }else {
-            l2.next = LeetCodeSolution1(l1,l2.next);
+        } else {
+            l2.next = LeetCodeSolution1(l1, l2.next);
             return l2;
         }
     }
 
-    class ListNode {
+    /**
+     * 迭代
+     */
+    public ListNode LeetCodeSolution2(ListNode l1, ListNode l2) {
+        ListNode prehead = new ListNode(-1);
+        ListNode prev = prehead;
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                prev.next = l1;
+                l1 = l1.next;
+            } else {
+                prev.next = l2;
+                l2 = l2.next;
+            }
+            prev = prev.next;
+        }
+        prev.next = l1 == null ? l2 : l1;
+
+        return prehead.next;
+    }
+
+    static class ListNode {
         int val;
         ListNode next;
 
