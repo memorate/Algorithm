@@ -53,7 +53,7 @@ public class MergeTwoSortedLists {
         return prehead.next;
     }
 
-    static class ListNode {
+    class ListNode{
         int val;
         ListNode next;
 

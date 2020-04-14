@@ -63,11 +63,11 @@ public class RomanToInteger {
     }
 
     public static int mySolution(String s) {
-        List<String> romans = new ArrayList<String>();
+        List<String> romans = new ArrayList<>();
         for (int i = 0; i < s.length(); i++) {
             romans.add(s.substring(i, i + 1));
         }
-        List<String> converter = new ArrayList<String>(Arrays.asList(""));
+        List<String> converter = new ArrayList<>(Arrays.asList(""));
         for (String roman : romans) {
             String merge = converter.get(converter.size() - 1) + roman;
             boolean judge = merge.equals("IV") || merge.equals("IX") || merge.equals("XL") ||
