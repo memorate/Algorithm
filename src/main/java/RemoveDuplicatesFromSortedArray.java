@@ -26,6 +26,10 @@ public class RemoveDuplicatesFromSortedArray {
         }
     }
 
+    /**
+     * 用 candidate 控制最终数组的下标，始终将未重复的元素赋给 nums[candidate]
+     * 用 num 来检测当前元素是否与前一个元素重复
+     */
     public static int MySolution(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         //用于存储比较过的数字
