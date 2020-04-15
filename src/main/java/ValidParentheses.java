@@ -2,6 +2,8 @@ import java.util.HashMap;
 import java.util.Stack;
 
 /**
+ * 【有效的括号】
+ *
  * 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
  * <p>
  * 有效字符串需满足：
@@ -11,23 +13,22 @@ import java.util.Stack;
  * 注意空字符串可被认为是有效字符串。
  * <p>
  * 示例 1:
- * <p>
  * 输入: "()"
  * 输出: true
- * 示例 2:
  * <p>
+ * 示例 2:
  * 输入: "()[]{}"
  * 输出: true
- * 示例 3:
  * <p>
+ * 示例 3:
  * 输入: "(]"
  * 输出: false
- * 示例 4:
  * <p>
+ * 示例 4:
  * 输入: "([)]"
  * 输出: false
- * 示例 5:
  * <p>
+ * 示例 5:
  * 输入: "{[]}"
  * 输出: true
  * <p>
@@ -95,7 +96,7 @@ public class ValidParentheses {
     public static boolean MySolution2(String s) {
         Stack<Character> stack = new Stack<Character>();
         for (int i = 0; i < s.length(); i++) {
-            if (stack.empty()){
+            if (stack.empty()) {
                 stack.push(s.charAt(i));
                 continue;
             }
