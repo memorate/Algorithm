@@ -1,13 +1,15 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Test {
     public static void main(String[] args) {
-        String aa = "MCMXCIV";
-        List<String> bb = new ArrayList<String>();
-        for (int i = 0; i < aa.length(); i++) {
-            bb.add(aa.substring(i,i+1));
+        int test = test();
+        System.out.println(test);
+    }
+
+    public static int test(){
+        int index = 0;
+        for (int i = 0; i < 10; i++) {
+            if (i<5)return i;
+            index++;
         }
-        System.out.println(bb);
+        return index;
     }
 }
