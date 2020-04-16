@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 【外观数列】
  * <p>
@@ -30,7 +33,8 @@
  */
 public class CountAndSay {
     public static void main(String[] args) {
-        System.out.println(MySolution(10));
+        System.out.println(MySolution(30));
+        System.out.println(MySolution2(30));
     }
 
     /**
@@ -59,5 +63,37 @@ public class CountAndSay {
             }
         }
         return result.toString();
+    }
+
+    /**
+     * 自下而上解决问题，但是感觉和递归没啥区别，因为没有重复计算的部分
+     * 耗时反而更长（不知道为啥）
+     */
+    public static String MySolution2(int n) {
+        if (n < 1 || n > 30) return "";
+        Map<Integer, String> map = new HashMap();
+        map.put(1, "1");
+        if (n == 1) return map.get(1);
+        for (int i = 2; i <= n; i++) {
+            char[] array = map.get(i - 1).toCharArray();
+            int counter = 0, candidate = array[0] - '0';
+            StringBuilder result = new StringBuilder();
+            for (int j = 0; j <= array.length; j++) {
+                if (j == array.length) {
+                    map.clear();
+                    map.put(i, result.append(counter).append(candidate).toString());
+                    break;
+                }
+                int num = array[j] - '0';
+                if (candidate == num) {
+                    counter++;
+                } else {
+                    result.append(counter).append(candidate);
+                    candidate = num;
+                    counter = 1;
+                }
+            }
+        }
+        return map.get(n);
     }
 }

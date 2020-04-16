@@ -1,11 +1,7 @@
 public class Test {
     public static void main(String[] args) {
-        String a = "112321354";
-        char[] array = a.toCharArray();
-        for (int i = 0; i < array.length; i++) {
-            int num = array[i] - '0';
-            System.out.println(num);
-        }
+        String[] cache = new String[30];
+        System.out.println(cache[29]);
     }
 
     public static int test() {
