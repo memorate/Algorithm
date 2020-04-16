@@ -10,7 +10,8 @@
 public class MaximumSubarray {
     public static void main(String[] args) {
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        System.out.println(MySolution1(nums));
+//        System.out.println(MySolution1(nums));
+        System.out.println(LeetCodeSolution(nums));
     }
 
     /**
@@ -21,19 +22,17 @@ public class MaximumSubarray {
         int maximum = nums[0];   //可以处理nums.length == 1的情况
         for (int i = 0; i < nums.length; i++) {
             int sum = 0;
-            String s = "[";
             for (int j = i; j < nums.length; j++) {
-                s += nums[j] + ", ";
                 sum += nums[j];
-                String s1 = sum < 0 ? "   " : "    ";
-                System.out.print(sum + s1);
-                System.out.println(s.substring(0, s.lastIndexOf(",")) + "]   ");
                 if (sum > maximum) maximum = sum;
             }
         }
         return maximum;
     }
 
+    /**
+     * 对于数组中的每一个元素，要么是某个数组中的一员，要么是某个数组中的起点，我们选择更大的那个，便是答案。
+     */
     public static int MySolution2(int[] nums) {
         int length = nums.length;
         if (length == 0) return 0;
@@ -44,7 +43,7 @@ public class MaximumSubarray {
     }
 
     /**
-     * 动态规划
+     * 动态规划   Todo:理解该算法
      */
     public static int LeetCodeSolution(int[] nums) {
         int n = nums.length, maxSum = nums[0];
