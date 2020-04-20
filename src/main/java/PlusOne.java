@@ -22,31 +22,42 @@ import java.util.Arrays;
  */
 public class PlusOne {
     public static void main(String[] args) {
-        int[] array = {4, 3, 2, 2};
+        int[] array = {9,8,9,9};
         System.out.println(Arrays.toString(MySolution(array)));
     }
 
     public static int[] MySolution(int[] digits) {
+        if (digits.length == 0) return digits;
         int index = digits.length - 1;
-        boolean flag = digits[index] == 9;      //用于控制是否需要向更高为进1
+        boolean flag = digits[index] == 9;      //用于控制是否需要向更高位进1
         for (int i = index; i >= 0; i--) {
             if (flag && i == 0 && digits[0] == 9) {   //如果最高位为9且需要加一，将数组长度加一
+                digits[i] = 0;
                 int[] result = new int[index + 2];
                 result[0] = 1;
                 System.arraycopy(digits, 0, result, 1, index);
                 return result;
             }
-            if (!flag) {
-                if (digits[i] == 9) {
-                    flag = true;
-                    digits[i] = 0;
-                } else {
-                    digits[i] += 1;
-                    return digits;
-                }
+            if (digits[i] == 9) {
+                flag = true;
+                digits[i] = 0;
+            } else {
+                digits[i] += 1;
+                return digits;
             }
-            flag = true;
         }
+        return digits;
+    }
+
+    public static int[] LeetCodeSolution(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            digits[i]++;
+            digits[i] = digits[i] % 10;
+            if (digits[i] != 0) return digits;
+        }
+        //如果最高位需要扩展一位，那么数组中每个元素都是9，例：99、999、9999
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
         return digits;
     }
 }
