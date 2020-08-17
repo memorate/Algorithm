@@ -15,7 +15,7 @@
  * 链接：https://leetcode-cn.com/problems/implement-strstr
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class ImplementStr {
+public class TwentyEight_ImplementStr {
 
     public static int MySolution(String haystack, String needle) {
         if (needle.length() == 0) return 0;

@@ -24,7 +24,7 @@ import java.math.BigDecimal;
  * 链接：https://leetcode-cn.com/problems/reverse-integer
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class ReverseInteger {
+public class Seven_ReverseInteger {
     public static void main(String[] args) throws Exception {
         System.out.println(mySolution(901000));
         System.out.println(LeetCodeSolution(901000));
