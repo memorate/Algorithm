@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 【外观数列】
+ * 38.【外观数列】
  * <p>
  * 「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。前五项如下：
  * 1.     1
@@ -31,7 +31,7 @@ import java.util.Map;
  * 链接：https://leetcode-cn.com/problems/count-and-say
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class ThirtyEight_CountAndSay {
+public class CountAndSay {
     public static void main(String[] args) {
         System.out.println(MySolution(30));
         System.out.println(MySolution2(30));

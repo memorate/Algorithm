@@ -1,5 +1,5 @@
 /**
- * 【合并两个有序链表】
+ * 21.【合并两个有序链表】
  *
  * 将两个升序链表合并为一个新的升序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
  * <p>
@@ -11,7 +11,7 @@
  * 链接：https://leetcode-cn.com/problems/merge-two-sorted-lists
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class TwentyOne_MergeTwoSortedLists {
+public class MergeTwoSortedLists {
 
     public static void main(String[] args) {
     }

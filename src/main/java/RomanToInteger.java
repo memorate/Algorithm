@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 【罗马数字转整数】
+ * 13.【罗马数字转整数】
  *
  * 罗马数字包含以下七种字符: I，V，X，L，C，D 和 M。
  * 字符          数值
@@ -57,7 +57,7 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/roman-to-integer
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class Thirteen_RomanToInteger {
+public class RomanToInteger {
     public static void main(String[] args) {
         String input = "III";
 

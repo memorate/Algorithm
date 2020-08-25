@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Stack;
 
 /**
- * 【有效的括号】
+ * 20.【有效的括号】
  *
  * 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
  * <p>
@@ -36,7 +36,7 @@ import java.util.Stack;
  * 链接：https://leetcode-cn.com/problems/valid-parentheses
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class Twenty_ValidParentheses {
+public class ValidParentheses {
     public static void main(String[] args) {
         String aa = "()";
         String bb = "()[]{}";
