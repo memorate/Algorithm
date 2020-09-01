@@ -20,36 +20,48 @@
 public class AddBinary {
 
     public static void main(String[] args) {
-        int i = '1' + '1';
-        int j = '0' + '0';
-        int k = '0' + '1';
-        int l = '1' + '1';
-        System.out.println(i);
-        System.out.println(j);
-        System.out.println(k);
-        System.out.println(l);
+
     }
 
     public static String MySolution(String a, String b) {
-        int size = a.length() >= b.length() ? a.length() : b.length();
-        char[] result = new char[size + 1];
-        char[] carry = new char[3];
-        carry[0] = '0';
-        int index = 0;
-        for (; index < size; index++) {
-            carry[1] = a.charAt(index);
-            carry[2] = b.charAt(index);
-            int counter = 0;
-            for (char item : carry) {
-                if (item == '1') counter++;
-            }
-            switch (counter) {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
+        if (a.length() < b.length()){
+            String temp = a;
+            a = b;
+            b = temp;
+        }
+        int big = Math.max(a.length(), b.length());
+        int small = Math.min(a.length(), b.length());
+        char[] result = new char[big + 1];
+        char[] carry = new char[]{'0', '0', '0'};
+        int index = big - 1;
+        for (; index >= 0; index--) {
+            if (index == small - 1) {
+                break;
+            } else {
+                carry[0] = a.charAt(index);
+                carry[1] = b.charAt(index);
+                int counter = 0;
+                for (char item : carry) {
+                    if (item == '1') counter++;
+                }
+                switch (counter) {
+                    case 0:
+                        result[index + 1] = '0';
+                        carry[2] = '0';
+                        break;
+                    case 1:
+                        result[index + 1] = '1';
+                        carry[2] = '0';
+                        break;
+                    case 2:
+                        result[index + 1] = '0';
+                        carry[2] = '1';
+                        break;
+                    case 3:
+                        result[index + 1] = '1';
+                        carry[2] = '1';
+                        break;
+                }
             }
         }
         return "";
