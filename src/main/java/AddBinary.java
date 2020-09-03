@@ -20,21 +20,50 @@
 public class AddBinary {
 
     public static void main(String[] args) {
-        System.out.println(MySolution("11", "1"));
-        System.out.println(MySolution("1010", "1011"));
-        System.out.println(MySolution("0", "0"));
-        System.out.println(MySolution("11111", "11111111"));
+        System.out.println(MySolution1("11", "1"));
+        System.out.println(MySolution1("1010", "1011"));
+        System.out.println(MySolution1("0", "0"));
+        System.out.println(MySolution1("11111", "11111111"));
     }
 
     /**
      * 大致思路：
-     * 用双指针i、j来定位a、b的位，从末位开始i、j相加，carry用来进位
+     * 用双指针i、j来定位a、b的位，从末位开始i、j、carry相加，判断相加的结果以确定是否需要进位
      * 当较小数被加完后，再对较大数的剩余位和carry进行运算
-     *
+     * <p>
      * 判断是否进位的条件：
-     * 将i、j所在的位转为int与carry相加，结果只会为0、1、2、3，分别代表（0,0,0）、（0,1,0）、（0,1,1）、（1,1,1）
+     * 将i、j所在的位转为int与carry相加，结果只会为0、1、2、3
+     *
+     *
+     * 这版耗时最长。。。。第一版MySolution1()反而耗时较短
+     *
+     * Todo 有个问题是：r是用 String 还是 StringBuffer 还是 StringBuilder
      */
-    public static String MySolution(String a, String b) {
+    static String MySolution2(String a, String b) {
+        //a一定是较大数，若不是，手动将a替换为较大数
+        if (a.length() < b.length()) {
+            String temp = a;
+            a = b;
+            b = temp;
+        }
+        int carry = 0;           //控制是否进位
+        String r = "";           //结果
+        for (int i = a.length() - 1, j = b.length() - 1; i >= 0; i--) {        //i、j是双指针
+            if (j >= 0) {      //控制较小数是否已被加完
+                carry += (a.charAt(i) - '0') + (b.charAt(j) - '0');       //carry作每次运算的结果,这块是借鉴LeetCode，确实很巧妙
+                r = carry % 2 + r;
+                carry /= 2;        //carry作进位
+                j--;
+            } else {     //控制较大数加完较小数后剩余位的运算
+                carry += a.charAt(i) - '0';
+                r = carry % 2 + r;
+                carry /= 2;
+            }
+        }
+        return carry == 0 ? r : 1 + r;
+    }
+
+    static String MySolution1(String a, String b) {
         //a一定是较大数，若不是，手动将a替换为较大数
         if (a.length() < b.length()) {
             String temp = a;
@@ -88,7 +117,7 @@ public class AddBinary {
     }
 
 
-    public static String LeetCodeSolution(String a, String b) {
+    static String LeetCodeSolution(String a, String b) {
         StringBuffer ans = new StringBuffer();
 
         int n = Math.max(a.length(), b.length()), carry = 0;
