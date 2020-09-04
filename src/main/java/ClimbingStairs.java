@@ -46,7 +46,7 @@ public class ClimbingStairs {
      * 自底向上推导 F(n)
      * 用 x、y、z 来缓存 F(n - 2)，F(n - 1)，F(n)
      *
-     * n > 49 时会溢出
+     * n > 46 时结果会溢出
      */
     static int MySolution2(int n) {
         if (n == 0) return 0;
