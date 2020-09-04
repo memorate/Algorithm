@@ -14,22 +14,53 @@
  */
 public class SqrtX {
     public static void main(String[] args) {
-
+        System.out.println(MySolution(977));
+        System.out.println(MySolution(9));
+        System.out.println(MySolution(10));
+        System.out.println(MySolution(8));
+        System.out.println(MySolution(0));
+        System.out.println(MySolution(1));
+        System.out.println(MySolution(2));
     }
 
+    /**
+     * 二分法
+     * n * n = x，找出离 n 最近且小于 n 的那个整数。由于 n * n 可能越界，因此条件改为 n < x/n
+     * 查找范围为 [0, x]（为什么不是 [0, x/2]？为了兼容 x = 1 时算法可正常运行）
+     * <p>
+     * 最后两个数怎么选：
+     * 当 x = 8 时，最后区间是 [2, 3]
+     * 当 x = 9 时，最后区间是 [2, 3]
+     * 此时先判断 right 是否符合，因为 right 距 x/2 最近。若不符合，则一定是 left
+     */
     static int MySolution(int x) {
-        int left = 0, right = x / 2;
+        int left = 0, right = x;
         while (left < right) {
-            int mid = (left + right) / 2;
-            if (mid * mid < x){
-
+            if (right - left == 1) return right <= x / right ? right : left;   //选最后两数之一
+            int mid = (left + right) >> 1;
+            if (mid < x / mid) {       //mid * mid < x 可能会越界
+                left = mid;
+            } else {
+                right = mid;
             }
         }
-        return 0;
+        return 0;     //x = 0 时，平方根为0
     }
 
+    /**
+     * 二分法
+     */
     static int LeetCodeSolution(int x) {
-
-        return 0;
+        int l = 0, r = x, ans = -1;
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if ((long) mid * mid <= x) {
+                ans = mid;
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return ans;
     }
 }
