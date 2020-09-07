@@ -14,18 +14,21 @@
  */
 public class SqrtX {
     public static void main(String[] args) {
-
+        System.out.println(MySolution(977));
     }
 
     static int MySolution(int x) {
+        if (x == 1) return 1;
         int left = 0, right = x / 2;
         while (left < right) {
-            int mid = (left + right) / 2;
-            if (mid * mid < x){
-
+            int mid = (left + right) / 2 + 1;
+            if (mid < x / mid) {
+                left = mid;
+            } else {
+                right = mid;
             }
         }
-        return 0;
+        return left;
     }
 
     static int LeetCodeSolution(int x) {
