@@ -31,7 +31,7 @@ public class SqrtX {
      * 最后两个数怎么选：
      * 当 x = 8 时，最后区间是 [2, 3]
      * 当 x = 9 时，最后区间是 [2, 3]
-     * 此时先判断 right 是否符合，因为 right 距 x/2 最近。若不符合，则一定是 left
+     * 此时先判断 right 是否符合，因为 right 距 n 最近。若不符合，则一定是 left
      */
     static int MySolution(int x) {
         int left = 0, right = x;

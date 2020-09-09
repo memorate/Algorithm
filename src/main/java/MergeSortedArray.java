@@ -41,6 +41,13 @@ public class MergeSortedArray {
         LeetCodeSolution1(p1, 0, p2, 1);
     }
 
+    /**
+     * 双指针
+     * 倒序比较两个数组中的元素，每次讲较大的放在 nums1 的当前末位
+     * main 方法中后三种测试案例较为复杂，需要考虑清楚各种边界问题
+     * 最终无非就两种情况：
+     * nums1 为空 和 nums2 为空
+     */
     static void MySolution(int[] nums1, int m, int[] nums2, int n) {
         int x = m - 1, y = n - 1;
         for (int i = m + n - 1; i >= 0; i--) {
@@ -62,7 +69,10 @@ public class MergeSortedArray {
     }
 
     /**
+     * 双指针 + 倒序比较
+     *
      * 秀啊
+     * 直接拿 m、n 作为双指针，边界判断简洁很多
      */
     static void LeetCodeSolution1(int[] nums1, int m, int[] nums2, int n) {
         int i = m-- + --n;
