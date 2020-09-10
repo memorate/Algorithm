@@ -20,7 +20,7 @@ public class MergeSortedArray {
     }
 
     static void MySolution(int[] nums1, int m, int[] nums2, int n) {
-
+        
     }
 
     static void LeetCodeSolution(int[] nums1, int m, int[] nums2, int n) {
