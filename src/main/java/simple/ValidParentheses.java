@@ -1,3 +1,5 @@
+package simple;
+
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -5,36 +7,32 @@ import java.util.Stack;
  * 20.【有效的括号】
  *
  * 给定一个只包括 '('，')'，'{'，'}'，'['，']'  的字符串，判断字符串是否有效。
- * <p>
+ *
  * 有效字符串需满足：
- * <p>
+ *
  * 左括号必须用相同类型的右括号闭合。
  * 左括号必须以正确的顺序闭合。
  * 注意空字符串可被认为是有效字符串。
- * <p>
+ *
  * 示例 1:
- * 输入: "()"
- * 输出: true
- * <p>
+ *  输入: "()"
+ *  输出: true
+ *
  * 示例  2:
- * 输入: "()[]{}"
- * 输出: true
- * <p>
+ *  输入: "()[]{}"
+ *  输出: true
+ *
  * 示例  3:
- * 输入: "(]"
- * 输出: false
- * <p>
+ *  输入: "(]"
+ *  输出: false
+ *
  * 示例  4:
- * 输入: "([)]"
- * 输出: false
- * <p>
+ *  输入: "([)]"
+ *  输出: false
+ *
  * 示例  5:
- * 输入: "{[]}"
- * 输出: true
- * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/valid-parentheses
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ *  输入: "{[]}"
+ *  输出: true
  */
 public class ValidParentheses {
     public static void main(String[] args) {
@@ -61,7 +59,7 @@ public class ValidParentheses {
      * 第二次循环判断每两个相邻的char能否闭合，like this：()[]{}
      * 失败原因：
      * 组合闭合无法判断，like this：(([]){})
-     * <p>
+     *
      * 其实一开始思路就错了，应该使用栈，栈很轻松就可以解决
      */
     public static boolean MySolution1(String s) {
