@@ -4,7 +4,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 二叉树的几种遍历
+ *                             二叉树的几种遍历方法
+ *
  *                  1                                      1
  *              /      \                               /      \
  *            2         3                             2        3
@@ -12,7 +13,7 @@ import java.util.Queue;
  *        4     5    6    7                        4     5       6
  *                                                      / \     /
  *                                                     7   8   9
- *              (树t1)                                    (树t2)
+ *             (树 t1)                                   (树 t2)
  *
  * 深度优先遍历：
  *   前序遍历：
@@ -30,8 +31,12 @@ import java.util.Queue;
  *   后序遍历：
  *     t1: [4, 5, 2, 6, 7, 3, 1]
  *     t2: [4, 7, 8, 5, 2, 9, 6, 3, 1]
+ *
+ *   层序遍历：
+ *     t1: [1, 2, 3, 4, 5, 6, 7]
+ *     t2: [1, 2, 3, 4, 5, 6, 7, 8, 9]
  */
-public class BinaryTreeTraversal {
+public class BiTreeTraversal {
 
     static int[] r = new int[9];
     static int counter = 0;
@@ -63,6 +68,12 @@ public class BinaryTreeTraversal {
         postOrder(t1);
         System.out.println("t1: " + print(r));
         postOrder(t2);
+        System.out.println("t2: " + print(r) + "\n");
+
+        System.out.println("层序遍历：");
+        levelOrder(t1);
+        System.out.println("t1: " + print(r));
+        levelOrder(t2);
         System.out.println("t2: " + print(r));
     }
 
@@ -110,11 +121,18 @@ public class BinaryTreeTraversal {
         r[counter++] = node.val;
     }
 
-    static void levelOrder(TreeNode node){
-        Queue<TreeNode> q = new LinkedList();
+    /**
+     * 广度优先遍历（层序遍历）
+     * 从上至下、从左至右逐层遍历
+     */
+    static void levelOrder(TreeNode node) {
+        Queue<TreeNode> q = new LinkedList<>();
         q.add(node);
-        while (!q.isEmpty()){
-            r[counter++] = q.poll().val;
+        while (!q.isEmpty()) {
+            TreeNode current = q.poll();
+            r[counter++] = current.val;
+            if (current.left != null) q.add(current.left);
+            if (current.right != null) q.add(current.right);
         }
     }
 
