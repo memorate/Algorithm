@@ -1,5 +1,8 @@
 package basis;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 二叉树的几种遍历
  *                  1                                      1
@@ -105,6 +108,14 @@ public class BinaryTreeTraversal {
         postOrder(node.left);
         postOrder(node.right);
         r[counter++] = node.val;
+    }
+
+    static void levelOrder(TreeNode node){
+        Queue<TreeNode> q = new LinkedList();
+        q.add(node);
+        while (!q.isEmpty()){
+            r[counter++] = q.poll().val;
+        }
     }
 
     static void initialize(TreeNode t1, TreeNode t2) {
