@@ -1,7 +1,5 @@
 package basis;
 
-import java.util.Arrays;
-
 /**
  * 二叉树的几种遍历
  *                  1                                      1
@@ -15,28 +13,29 @@ import java.util.Arrays;
  *
  * 深度优先遍历：
  *   前序遍历：
- *   t1: [1, 2, 4, 5, 3, 6, 7]
- *   t2: [1, 2, 4, 5, 7, 8, 3, 6, 9]
+ *     t1: [1, 2, 4, 5, 3, 6, 7]
+ *     t2: [1, 2, 4, 5, 7, 8, 3, 6, 9]
  *
  *   中序遍历：
- *   t1: [4, 2, 5, 1, 6, 3, 7]
- *   t2: [4, 2, 7, 5, 8, 1, 3, 9, 6]
+ *     t1: [4, 2, 5, 1, 6, 3, 7]
+ *     t2: [4, 2, 7, 5, 8, 1, 3, 9, 6]
  *
  *   反中序遍历：
- *   t1: [7, 3, 6, 1, 5, 2, 4]
- *   t2: [6, 9, 3, 1, 8, 5, 7, 2, 4]
+ *     t1: [7, 3, 6, 1, 5, 2, 4]
+ *     t2: [6, 9, 3, 1, 8, 5, 7, 2, 4]
  *
  *   后序遍历：
- *   t1: [4, 5, 2, 6, 7, 3, 1]
- *   t2: [4, 7, 8, 5, 2, 9, 6, 3, 1]
+ *     t1: [4, 5, 2, 6, 7, 3, 1]
+ *     t2: [4, 7, 8, 5, 2, 9, 6, 3, 1]
  */
 public class BinaryTreeTraversal {
+
     static int[] r = new int[9];
     static int counter = 0;
+    static TreeNode t1 = new TreeNode();
+    static TreeNode t2 = new TreeNode();
 
     public static void main(String[] args) {
-        TreeNode t1 = new TreeNode();
-        TreeNode t2 = new TreeNode();
         initialize(t1, t2);
 
         System.out.println("前序遍历：");
@@ -143,7 +142,7 @@ public class BinaryTreeTraversal {
         return out.substring(0, out.lastIndexOf(',')) + "]";
     }
 
-    static void clear(){
+    static void clear() {
         counter = 0;
         r = new int[9];
     }
