@@ -2,6 +2,7 @@ package basis;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  *                             二叉树的几种遍历方法
@@ -49,6 +50,8 @@ public class BiTreeTraversal {
         System.out.println("前序遍历：");
         preOrder(t1);
         System.out.println("t1: " + print(r));
+        nonRecursivePreOrder(t1);
+        System.out.println("t1: " + print(r));
         preOrder(t2);
         System.out.println("t2: " + print(r) + "\n");
 
@@ -86,6 +89,21 @@ public class BiTreeTraversal {
         r[counter++] = node.val;
         preOrder(node.left);
         preOrder(node.right);
+    }
+
+    static void nonRecursivePreOrder(TreeNode node){
+        Stack<TreeNode> stack = new Stack<>();
+        while (node != null || !stack.empty()){
+            while (node != null){
+                stack.push(node);
+                node = node.left;
+            }
+            if (!stack.empty()){
+                node = stack.pop();
+                r[counter++] = node.val;
+                node = node.right;
+            }
+        }
     }
 
     /**
