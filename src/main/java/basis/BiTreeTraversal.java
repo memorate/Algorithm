@@ -178,6 +178,9 @@ public class BiTreeTraversal {
 
     /**
      * 非递归后序遍历
+     *
+     * 双栈法   stack用来遍历树，result用来存储遍历的结果
+     * 由于栈的先进后出原则，根节点-右节点-左节点 顺序对树进行遍历，最终取出来的结果则为后序遍历
      */
     static void nonRecursivePostOrder(TreeNode node){
         if (node == null) return;
