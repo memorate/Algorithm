@@ -1,7 +1,7 @@
 package basis;
 
 /**
- *             递归与迭代
+ *                   递归与迭代
  * 递归：在方法的定义中调用自身的方法（A调用A）
  * 迭代：循环过程中，上一次循环的结果作为下一次循环的输入（A重复调用B）
  *
@@ -15,12 +15,18 @@ public class RecursionAndIteration {
         System.out.println(iteration(10));
     }
 
+    /**
+     * 递归求解斐波那契数列
+     */
     static int recursion(int n) {
         if (n == 0) return 0;
         if (n == 1 || n == 2) return 1;
         return recursion(n - 1) + recursion(n - 2);       //自己调用自己
     }
 
+    /**
+     * 迭代求解斐波那契数列
+     */
     static int iteration(int n) {
         if (n == 0) return 0;
         int r = 1, pre = 1, post = 1;         //r：f(n), pre:f(n-2), post:f(n-1)
