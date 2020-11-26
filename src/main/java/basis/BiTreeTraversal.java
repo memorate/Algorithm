@@ -47,33 +47,49 @@ public class BiTreeTraversal {
     public static void main(String[] args) {
         initialize(t1, t2);
 
-        System.out.println("前序遍历：");
+        System.out.println("————————前序遍历————————");
+        System.out.print("递归：");
         preOrder(t1);
-        System.out.println("t1: " + print(r));
-        nonRecursivePreOrder(t1);
-        System.out.println("t1: " + print(r));
+        System.out.println("  t1——" + print(r));
         preOrder(t2);
-        System.out.println("t2: " + print(r) + "\n");
+        System.out.println("       t2——" + print(r));
+        System.out.print("非递归：");
+        nonRecursivePreOrder(t1);
+        System.out.println("t1——" + print(r));
+        nonRecursivePreOrder(t2);
+        System.out.println("       t2——" + print(r) + "\n");
 
-        System.out.println("中序遍历：");
+        System.out.println("————————中序遍历————————");
+        System.out.print("递归：");
         inOrder(t1);
-        System.out.println("t1: " + print(r));
+        System.out.println("  t1——" + print(r));
         inOrder(t2);
-        System.out.println("t2: " + print(r) + "\n");
+        System.out.println("       t2——" + print(r));
+        System.out.print("非递归：");
+        nonRecursiveInOrder(t1);
+        System.out.println("t1——" + print(r));
+        nonRecursiveInOrder(t2);
+        System.out.println("       t2——" + print(r) + "\n");
 
-        System.out.println("反中序遍历：");
+        System.out.println("————————反中序遍历————————");
         reverseInOrder(t1);
         System.out.println("t1: " + print(r));
         reverseInOrder(t2);
         System.out.println("t2: " + print(r) + "\n");
 
-        System.out.println("后序遍历：");
+        System.out.println("————————后序遍历————————");
+        System.out.print("递归：");
         postOrder(t1);
-        System.out.println("t1: " + print(r));
+        System.out.println("  t1——" + print(r));
         postOrder(t2);
-        System.out.println("t2: " + print(r) + "\n");
+        System.out.println("       t2——" + print(r));
+        System.out.print("非递归：");
+        nonRecursivePostOrder(t1);
+        System.out.println("t1——" + print(r));
+        nonRecursivePostOrder(t2);
+        System.out.println("       t2——" + print(r) + "\n");
 
-        System.out.println("层序遍历：");
+        System.out.println("————————层序遍历————————");
         levelOrder(t1);
         System.out.println("t1: " + print(r));
         levelOrder(t2);
@@ -81,7 +97,7 @@ public class BiTreeTraversal {
     }
 
     /**
-     * 前序遍历
+     * 递归前序遍历
      * 根节点 + 左节点 + 右节点
      */
     static void preOrder(TreeNode node) {
@@ -91,7 +107,39 @@ public class BiTreeTraversal {
         preOrder(node.right);
     }
 
+    /**
+     * 非递归前序遍历
+     */
     static void nonRecursivePreOrder(TreeNode node){
+        Stack<TreeNode> stack = new Stack<>();
+        while (node != null || !stack.empty()){
+            while (node != null){
+                r[counter++] = node.val;
+                stack.push(node);
+                node = node.left;
+            }
+            if (!stack.empty()){
+                node = stack.pop();
+                node = node.right;
+            }
+        }
+    }
+
+    /**
+     * 递归中序遍历
+     * 左节点 + 根节点 + 右节点
+     */
+    static void inOrder(TreeNode node) {
+        if (null == node) return;
+        inOrder(node.left);
+        r[counter++] = node.val;
+        inOrder(node.right);
+    }
+
+    /**
+     * 非递归中序遍历
+     */
+    static void nonRecursiveInOrder(TreeNode node){
         Stack<TreeNode> stack = new Stack<>();
         while (node != null || !stack.empty()){
             while (node != null){
@@ -104,17 +152,6 @@ public class BiTreeTraversal {
                 node = node.right;
             }
         }
-    }
-
-    /**
-     * 中序遍历
-     * 左节点 + 根节点 + 右节点
-     */
-    static void inOrder(TreeNode node) {
-        if (null == node) return;
-        inOrder(node.left);
-        r[counter++] = node.val;
-        inOrder(node.right);
     }
 
     /**
@@ -137,6 +174,29 @@ public class BiTreeTraversal {
         postOrder(node.left);
         postOrder(node.right);
         r[counter++] = node.val;
+    }
+
+    /**
+     * 非递归后序遍历
+     *
+     * 双栈法   stack用来遍历树，result用来存储遍历的结果
+     * 由于栈的先进后出原则，根节点-右节点-左节点 顺序对树进行遍历，最终取出来的结果则为后序遍历
+     */
+    static void nonRecursivePostOrder(TreeNode node){
+        if (node == null) return;
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> result = new Stack<>();
+        while (node != null || !stack.empty()){
+            while (node != null){
+                stack.add(node);
+                result.add(node);
+                node = node.right;
+            }
+            if (!stack.empty()) node = stack.pop().left;
+        }
+        while (!result.empty()){
+            r[counter++] = result.pop().val;
+        }
     }
 
     /**
