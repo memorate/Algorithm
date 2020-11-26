@@ -23,16 +23,58 @@ package simple;
  */
 public class SymmetricTree {
     public static void main(String[] args) {
-
+        TreeNode node1 = initialize1();
+        TreeNode node2 = initialize2();
+        System.out.println("tree1: " + MySolution(node1));
+        System.out.println("tree2: " + MySolution(node2));
     }
 
     static boolean MySolution(TreeNode root) {
-        return true;
+        if (root == null) return true;
+        return check(root.left, root.right);
+    }
+
+    private static boolean check(TreeNode left, TreeNode right) {
+        if (left == null && right == null) return true;
+        if (left == null || right == null) return false;
+        return left.val == right.val && check(left.left, right.right) && check(left.right, right.left);
     }
 
     static boolean LeetCodeSolution(TreeNode root) {
 
         return true;
+    }
+
+    private static TreeNode initialize1() {
+        TreeNode root = new TreeNode(1);
+        TreeNode l10 = new TreeNode(2);
+        TreeNode l11 = new TreeNode(2);
+        TreeNode l20 = new TreeNode(3);
+        TreeNode l21 = new TreeNode(4);
+        TreeNode l22 = new TreeNode(4);
+        TreeNode l23 = new TreeNode(3);
+        l10.left = l20;
+        l10.right = l21;
+        l11.left = l22;
+        l11.right = l23;
+        root.left = l10;
+        root.right = l11;
+        return root;
+    }
+
+    private static TreeNode initialize2() {
+        TreeNode root = new TreeNode(1);
+        TreeNode l10 = new TreeNode(2);
+        TreeNode l11 = new TreeNode(2);
+        TreeNode l21 = new TreeNode(3);
+        TreeNode l23 = new TreeNode(3);
+        l10.left = null;
+        l10.right = l21;
+        l11.left = null;
+        l11.right = l23;
+        root.left = l10;
+        root.right = l11;
+        return root;
     }
 
     static class TreeNode {
