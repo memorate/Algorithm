@@ -1,5 +1,8 @@
 package simple;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * 101.【对称二叉树】
  *
@@ -40,8 +43,12 @@ public class SymmetricTree {
         return left.val == right.val && check(left.left, right.right) && check(left.right, right.left);
     }
 
-    static boolean LeetCodeSolution(TreeNode root) {
+    static boolean iteration(TreeNode root) {
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
 
+        }
         return true;
     }
 
