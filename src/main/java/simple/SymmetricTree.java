@@ -1,6 +1,7 @@
 package simple;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -28,11 +29,18 @@ public class SymmetricTree {
     public static void main(String[] args) {
         TreeNode node1 = initialize1();
         TreeNode node2 = initialize2();
-        System.out.println("tree1: " + MySolution(node1));
-        System.out.println("tree2: " + MySolution(node2));
+        System.out.println("————————————————Recursion————————————————");
+        System.out.println("tree1: " + recursion(node1));
+        System.out.println("tree2: " + recursion(node2));
+        System.out.println("————————————————Iteration————————————————");
+        System.out.println("tree1: " + iteration(node1));
+        System.out.println("tree2: " + iteration(node2));
     }
 
-    static boolean MySolution(TreeNode root) {
+    /**
+     * 递归求解
+     */
+    static boolean recursion(TreeNode root) {
         if (root == null) return true;
         return check(root.left, root.right);
     }
@@ -43,11 +51,28 @@ public class SymmetricTree {
         return left.val == right.val && check(left.left, right.right) && check(left.right, right.left);
     }
 
+    /**
+     * 迭代求解
+     */
     static boolean iteration(TreeNode root) {
-        Queue<TreeNode> queue = new ArrayDeque<>();
-        queue.add(root);
-        while (!queue.isEmpty()){
+        if (root == null) return true;
+        return verify(root.left, root.right);
+    }
 
+    private static boolean verify(TreeNode first, TreeNode second) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(first);
+        queue.add(second);
+        //每次判断两个结点
+        while (!queue.isEmpty()) {
+            first = queue.poll();
+            second = queue.poll();
+            if (first == null && second == null) continue;
+            if (first == null || second == null || first.val != second.val) return false;
+            queue.add(first.left);
+            queue.add(second.right);
+            queue.add(second.left);
+            queue.add(first.right);
         }
         return true;
     }
