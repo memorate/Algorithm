@@ -1,5 +1,8 @@
 package simple;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 104.【二叉树的最大深度】
  *
@@ -20,15 +23,35 @@ package simple;
 public class BiTreeMaximumDepth {
 
     public static void main(String[] args) {
-
+        TreeNode root = initialize();
+        System.out.println("Recursion: " + recursion(root));
+        System.out.println("Iteration: " + iteration(root));
     }
 
-    static int maxDepth(TreeNode root) {
-
-        return 0;
+    static int recursion(TreeNode root) {
+        if(root == null) return 0;
+        return 1 + Math.max(recursion(root.left), recursion(root.right));
     }
 
-    private static TreeNode initialize1() {
+    static int iteration(TreeNode root) {
+        if (root == null) return 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int depth = 0;
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            while (size > 0){
+                TreeNode node = queue.poll();
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+                size--;
+            }
+            depth++;
+        }
+        return depth;
+    }
+
+    private static TreeNode initialize() {
         TreeNode l20 = new TreeNode(15);
         TreeNode l21 = new TreeNode(7);
         TreeNode l10 = new TreeNode(9);
