@@ -30,17 +30,27 @@ public class BiTreeMaximumDepth {
         System.out.println("Iteration: " + iteration(root));
     }
 
+    /**
+     * 当前节点的高度 = 1 + 子树的高度
+     *   PS：子树的高度 = Max(左子树, 右子树)
+     */
     static int recursion(TreeNode root) {
         if(root == null) return 0;
         return 1 + Math.max(recursion(root.left), recursion(root.right));
     }
 
+    /**
+     * 层序遍历树
+     *  每遍历一层，depth 加一
+     *  每次遍历一层时遍历该层的所有节点
+     */
     static int iteration(TreeNode root) {
         if (root == null) return 0;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         int depth = 0;
         while (!queue.isEmpty()){
+            //用size来控制当前层是否遍历结束
             int size = queue.size();
             while (size > 0){
                 TreeNode node = queue.poll();

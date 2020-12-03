@@ -1,5 +1,7 @@
 package simple;
 
+import common.TreeNode;
+
 /**
  * 100.【相同的树】
  *
@@ -71,25 +73,6 @@ public class SameTree {
             return false;
         } else {
             return LeetCodeSolution(p.left, q.left) && LeetCodeSolution(p.right, q.right);
-        }
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
         }
     }
 }

@@ -1,5 +1,7 @@
 package simple;
 
+import common.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -39,11 +41,14 @@ public class SymmetricTree {
     /**
      * 递归求解
      */
-    static boolean recursion(TreeNode root) {
+    private static boolean recursion(TreeNode root) {
         if (root == null) return true;
         return check(root.left, root.right);
     }
 
+    /**
+     * 判断每个节点的左子树与右子树是否堆成
+     */
     private static boolean check(TreeNode left, TreeNode right) {
         if (left == null && right == null) return true;
         if (left == null || right == null) return false;
@@ -53,11 +58,18 @@ public class SymmetricTree {
     /**
      * 迭代求解
      */
-    static boolean iteration(TreeNode root) {
+    private static boolean iteration(TreeNode root) {
         if (root == null) return true;
         return verify(root.left, root.right);
     }
 
+    /**
+     * 每次向队列中添加两个对称的节点
+     *  1）若两个节点都为空，对称
+     *  2）若有一个节点为空，不队称
+     *  3）若两个节点都不为空，且值相等，对称
+     *  4）若两个节点都不为空，且值不相等，不对称
+     */
     private static boolean verify(TreeNode first, TreeNode second) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(first);
@@ -106,15 +118,5 @@ public class SymmetricTree {
         root.left = l10;
         root.right = l11;
         return root;
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
