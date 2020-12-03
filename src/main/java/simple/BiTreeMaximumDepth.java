@@ -41,13 +41,14 @@ public class BiTreeMaximumDepth {
 
     /**
      * 层序遍历树
-     *  每遍历一层，depth 加一
-     *  每次遍历一层时遍历该层的所有节点
+     *  1）每遍历一层，depth 加一
+     *  2）每次遍历一层时遍历该层的所有节点
      */
     static int iteration(TreeNode root) {
         if (root == null) return 0;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
+        //depth控制遍历了多少层
         int depth = 0;
         while (!queue.isEmpty()){
             //用size来控制当前层是否遍历结束
