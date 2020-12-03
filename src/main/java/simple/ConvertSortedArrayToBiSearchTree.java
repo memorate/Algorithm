@@ -19,6 +19,13 @@ import common.TreeNode;
  *       /    /
  *    -10    5
  *
+ *
+ * 二叉搜索树：
+ *   对于一颗二叉树的每个节点，左子树的所有节点 <= 根节点 <= 右子树的所有节点
+ *
+ * 树的高度和深度：
+ *   高度，从下往上的层数；深度，从上往下的层数。
+ *
  */
 public class ConvertSortedArrayToBiSearchTree {
 
@@ -27,8 +34,16 @@ public class ConvertSortedArrayToBiSearchTree {
         System.out.println(sortedArrayToBST(array));
     }
 
-    public static TreeNode sortedArrayToBST(int[] nums) {
+    private static TreeNode sortedArrayToBST(int[] nums) {
+        return converter(nums, 0, nums.length - 1);
+    }
 
-        return null;
+    private static TreeNode converter(int[] nums, int left, int right) {
+        if (left > right) return null;
+        int mid = (left + right) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = converter(nums, left, mid - 1);
+        root.right = converter(nums, mid + 1, right);
+        return root;
     }
 }
