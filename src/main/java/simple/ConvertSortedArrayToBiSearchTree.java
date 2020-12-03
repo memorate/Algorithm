@@ -17,7 +17,7 @@ import common.TreeNode;
  *         /  \
  *       -3    9
  *       /    /
- *     10    5
+ *    -10    5
  *
  */
 public class ConvertSortedArrayToBiSearchTree {
