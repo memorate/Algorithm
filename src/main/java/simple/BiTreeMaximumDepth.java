@@ -1,5 +1,7 @@
 package simple;
 
+import common.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -57,24 +59,5 @@ public class BiTreeMaximumDepth {
         TreeNode l10 = new TreeNode(9);
         TreeNode l11 = new TreeNode(20, l20, l21);
         return new TreeNode(3, l10, l11);
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 }

@@ -1,5 +1,7 @@
 package basis;
 
+import common.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -41,11 +43,10 @@ public class BiTreeTraversal {
 
     static int[] r = new int[9];
     static int counter = 0;
-    static TreeNode t1 = new TreeNode();
-    static TreeNode t2 = new TreeNode();
 
     public static void main(String[] args) {
-        initialize(t1, t2);
+        TreeNode t1 = initialize1();
+        TreeNode t2 = initialize2();
 
         System.out.println("————————前序遍历————————");
         System.out.print("递归：");
@@ -110,15 +111,15 @@ public class BiTreeTraversal {
     /**
      * 非递归前序遍历
      */
-    static void nonRecursivePreOrder(TreeNode node){
+    static void nonRecursivePreOrder(TreeNode node) {
         Stack<TreeNode> stack = new Stack<>();
-        while (node != null || !stack.empty()){
-            while (node != null){
+        while (node != null || !stack.empty()) {
+            while (node != null) {
                 r[counter++] = node.val;
                 stack.push(node);
                 node = node.left;
             }
-            if (!stack.empty()){
+            if (!stack.empty()) {
                 node = stack.pop();
                 node = node.right;
             }
@@ -139,14 +140,14 @@ public class BiTreeTraversal {
     /**
      * 非递归中序遍历
      */
-    static void nonRecursiveInOrder(TreeNode node){
+    static void nonRecursiveInOrder(TreeNode node) {
         Stack<TreeNode> stack = new Stack<>();
-        while (node != null || !stack.empty()){
-            while (node != null){
+        while (node != null || !stack.empty()) {
+            while (node != null) {
                 stack.push(node);
                 node = node.left;
             }
-            if (!stack.empty()){
+            if (!stack.empty()) {
                 node = stack.pop();
                 r[counter++] = node.val;
                 node = node.right;
@@ -182,19 +183,19 @@ public class BiTreeTraversal {
      * 双栈法   stack用来遍历树，result用来存储遍历的结果
      * 由于栈的先进后出原则，根节点-右节点-左节点 顺序对树进行遍历，最终取出来的结果则为后序遍历
      */
-    static void nonRecursivePostOrder(TreeNode node){
+    static void nonRecursivePostOrder(TreeNode node) {
         if (node == null) return;
         Stack<TreeNode> stack = new Stack<>();
         Stack<TreeNode> result = new Stack<>();
-        while (node != null || !stack.empty()){
-            while (node != null){
+        while (node != null || !stack.empty()) {
+            while (node != null) {
                 stack.add(node);
                 result.add(node);
                 node = node.right;
             }
             if (!stack.empty()) node = stack.pop().left;
         }
-        while (!result.empty()){
+        while (!result.empty()) {
             r[counter++] = result.pop().val;
         }
     }
@@ -214,18 +215,17 @@ public class BiTreeTraversal {
         }
     }
 
-    static void initialize(TreeNode t1, TreeNode t2) {
-        t1.val = t2.val = 1;
-
+    static TreeNode initialize1() {
         TreeNode n4 = new TreeNode(4);
         TreeNode n5 = new TreeNode(5);
         TreeNode n6 = new TreeNode(6);
         TreeNode n7 = new TreeNode(7);
         TreeNode n2 = new TreeNode(2, n4, n5);
         TreeNode n3 = new TreeNode(3, n6, n7);
-        t1.left = n2;
-        t1.right = n3;
+        return new TreeNode(1, n2, n3);
+    }
 
+    static TreeNode initialize2() {
         TreeNode m4 = new TreeNode(4);
         TreeNode m6 = new TreeNode(6);
         TreeNode m7 = new TreeNode(7);
@@ -236,8 +236,7 @@ public class BiTreeTraversal {
         TreeNode m3 = new TreeNode(3);
         m3.right = m6;
         m6.left = m9;
-        t2.left = m2;
-        t2.right = m3;
+        return new TreeNode(1, m2, m3);
     }
 
     static String print(int[] array) {
@@ -252,24 +251,5 @@ public class BiTreeTraversal {
     static void clear() {
         counter = 0;
         r = new int[9];
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        public TreeNode() {
-        }
-
-        public TreeNode(int val) {
-            this.val = val;
-        }
-
-        public TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 }
