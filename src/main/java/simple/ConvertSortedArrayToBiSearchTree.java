@@ -35,9 +35,33 @@ public class ConvertSortedArrayToBiSearchTree {
     }
 
     private static TreeNode sortedArrayToBST(int[] nums) {
+        if (nums.length == 0) return null;
         return converter(nums, 0, nums.length - 1);
     }
 
+    /**
+     * 二分法 + 递归
+     *
+     * [-10,-3,0,5,9]
+     *
+     * root: [0, 4], mid = 2. val = 0, n1 = [0, 1], n2 = [3, 4]
+     * n1:   [0, 1], mid = 0. val = -10, n3 = [0, -1], n4 = [1, 1]
+     * n2:   [3, 4], mid = 3. val = 5, n5 = [3, 2], n6 = [4, 4]
+     * n3:   [0, -1], null
+     * n4:   [1, 1], mid = 1. val = -3, n7 = [1, 0], n8 = [2, 1]
+     * n5:   [3, 2], null
+     * n6:   [4, 4], mid = 4. val = 9, n9 = [4, 3], n10 = [5, 4]
+     * n7:   [1, 0], null
+     * n8:   [2, 1], null
+     * n9:   [4, 3], null
+     * n10:  [5, 4], null
+     *
+     *             0
+     *           /  \
+     *        -10    5
+     *          \     \
+     *          -3     9
+     */
     private static TreeNode converter(int[] nums, int left, int right) {
         if (left > right) return null;
         int mid = left + (right - left) / 2;
