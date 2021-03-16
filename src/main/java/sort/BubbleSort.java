@@ -16,7 +16,7 @@ import java.util.Arrays;
  * 空间复杂度: O(1)
  * 稳定
  */
-public class Bubble {
+public class BubbleSort {
     public static void main(String[] args) {
         int[] array = {9, 3, 7, 6, 1, 7, 4, 5};
         System.out.println(Arrays.toString(bubble(array)));
