@@ -1,6 +1,8 @@
 package simple;
 
 /**
+ * @author Anchor
+ *
  * 53.【最大子序和】
  * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
  *
@@ -21,7 +23,8 @@ public class MaximumSubarray {
      */
     public static int MySolution1(int[] nums) {
         if (nums.length == 0) return 0;
-        int maximum = nums[0];   //可以处理nums.length == 1的情况
+        // 可以处理nums.length == 1的情况
+        int maximum = nums[0];
         for (int i = 0; i < nums.length; i++) {
             int sum = 0;
             for (int j = i; j < nums.length; j++) {

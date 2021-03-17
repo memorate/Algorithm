@@ -3,6 +3,8 @@ package simple;
 import common.TreeNode;
 
 /**
+ * @author Anchor
+ *
  * 100.【相同的树】
  *
  * 给定两个二叉树，编写一个函数来检验它们是否相同。
