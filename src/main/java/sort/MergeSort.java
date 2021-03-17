@@ -14,18 +14,24 @@ import java.util.Arrays;
 public class MergeSort {
     public static void main(String[] args) {
         int[] array = {9, 3, 7, 6, 1, 7, 4, 5};
-        System.out.println(Arrays.toString(merge(array)));
+        System.out.println(Arrays.toString(mergeSort(array)));
     }
 
-    private static int[] merge(int[] array) {
+    private static int[] mergeSort(int[] array) {
         if (array == null || array.length == 0) return new int[0];
-        for (int i = 1; i < array.length; i++) {
-            for (int j = i - 1; j >= 0 && array[j] > array[j + 1]; j--) {
-                int temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
-            }
-        }
+        sort(array, 0, array.length - 1);
         return array;
+    }
+
+    private static void sort(int[] arr, int l, int r) {
+        if (l == r) return;
+        int m = l + (r - l) >> 1;
+        sort(arr, l, m);
+        sort(arr, m, r);
+        merge(arr, l, m, r);
+    }
+
+    private static void merge(int[] arr, int l, int m, int r) {
+
     }
 }

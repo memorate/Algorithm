@@ -19,10 +19,10 @@ import java.util.Arrays;
 public class BubbleSort {
     public static void main(String[] args) {
         int[] array = {9, 3, 7, 6, 1, 7, 4, 5};
-        System.out.println(Arrays.toString(bubble(array)));
+        System.out.println(Arrays.toString(bubbleSort(array)));
     }
 
-    private static int[] bubble(int[] array) {
+    private static int[] bubbleSort(int[] array) {
         if (array == null || array.length == 0) return new int[0];
         for (int i = array.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {

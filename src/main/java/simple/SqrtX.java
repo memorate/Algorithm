@@ -40,15 +40,18 @@ public class SqrtX {
     static int MySolution(int x) {
         int left = 0, right = x;
         while (left < right) {
-            if (right - left == 1) return right <= x / right ? right : left;   //选最后两数之一
+            // 选最后两数之一
+            if (right - left == 1) return right <= x / right ? right : left;
             int mid = (left + right) >> 1;
-            if (mid < x / mid) {       //mid * mid < x 可能会越界
+            // mid * mid < x 可能会越界
+            if (mid < x / mid) {
                 left = mid;
             } else {
                 right = mid;
             }
         }
-        return 0;     //x = 0 时，平方根为0
+        // x = 0 时，平方根为0
+        return 0;
     }
 
     /**

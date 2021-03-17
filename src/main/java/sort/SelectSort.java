@@ -16,10 +16,10 @@ import java.util.Arrays;
 public class SelectSort {
     public static void main(String[] args) {
         int[] array = {9, 3, 7, 6, 1, 7, 4, 5};
-        System.out.println(Arrays.toString(select(array)));
+        System.out.println(Arrays.toString(selectSort(array)));
     }
 
-    private static int[] select(int[] array) {
+    private static int[] selectSort(int[] array) {
         if (array == null || array.length == 0) return new int[0];
         for (int i = array.length - 1; i > 0; i--) {
             int max = array[0], index = 0;
