@@ -1,4 +1,4 @@
-package simple;
+package leetcode.simple;
 
 /**
  * @author Anchor
