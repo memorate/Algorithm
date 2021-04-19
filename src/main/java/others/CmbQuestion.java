@@ -40,7 +40,7 @@ package others;
  *             4    2   2  5 5  2  5    3          2    5   5  3 5  3  3    1
  *
  * 优化空间：
- *   用动态规划求解
+ *   用动态规划求解?
  *
  * @author Anchor
  * @date 2021-04-18 14:43
@@ -75,6 +75,7 @@ public class CmbQuestion {
      */
     public int head(int h, int t, int s, int[] n, int[] v) {
         int now = v[v.length - s] * n[h];
+        // 假设数组长度为 5，s 为 1 ，此时 v[v.length - s] == v[4]，说明已是最后一个节点，递归终止
         if (s == 1) {
             return now;
         } else {
