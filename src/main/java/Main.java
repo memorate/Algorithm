@@ -16,6 +16,8 @@ public class Main {
         new Producer().start();
         Thread.sleep(TimeUnit.SECONDS.toSeconds(1));
         new Consumer().start();
+        int[][] a = {{1,2,3},{1,2,3},{1,2,3}};
+
     }
 
     static class Producer extends Thread {
