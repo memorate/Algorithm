@@ -6,11 +6,11 @@ package others;
  * @author Anchor
  * @date 2021-04-26 10:12
  */
-public class HanNuoTower {
+public class HanoiTower {
     int counter = 0;
 
     public static void main(String[] args) {
-        new HanNuoTower().moveDish(3, 'A', 'B', 'C');
+        new HanoiTower().moveDish(3, 'A', 'B', 'C');
     }
 
     public void moveDish(int level, char from, char inter, char to) {
