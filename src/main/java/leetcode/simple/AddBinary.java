@@ -40,8 +40,6 @@ public class AddBinary {
      *
      *
      * 这版耗时最长。。。。第一版MySolution1()反而耗时较短
-     *
-     * Todo 有个问题是：r是用 String 还是 StringBuffer 还是 StringBuilder
      */
     static String MySolution2(String a, String b) {
         //a一定是较大数，若不是，手动将a替换为较大数
@@ -50,15 +48,22 @@ public class AddBinary {
             a = b;
             b = temp;
         }
-        int carry = 0;           //控制是否进位
-        String r = "";           //结果
-        for (int i = a.length() - 1, j = b.length() - 1; i >= 0; i--) {        //i、j是双指针
-            if (j >= 0) {      //控制较小数是否已被加完
-                carry += (a.charAt(i) - '0') + (b.charAt(j) - '0');       //carry作每次运算的结果,这块是借鉴LeetCode，确实很巧妙
+        // 控制是否进位
+        int carry = 0;
+        // 结果
+        String r = "";
+        // i、j是双指针
+        for (int i = a.length() - 1, j = b.length() - 1; i >= 0; i--) {
+            // 控制较小数是否已被加完
+            if (j >= 0) {
+                // carry作每次运算的结果,这块是借鉴LeetCode，确实很巧妙
+                carry += (a.charAt(i) - '0') + (b.charAt(j) - '0');
                 r = carry % 2 + r;
-                carry /= 2;        //carry作进位
+                // carry作进位
+                carry /= 2;
                 j--;
-            } else {     //控制较大数加完较小数后剩余位的运算
+                // 控制较大数加完较小数后剩余位的运算
+            } else {
                 carry += a.charAt(i) - '0';
                 r = carry % 2 + r;
                 carry /= 2;
@@ -68,18 +73,24 @@ public class AddBinary {
     }
 
     static String MySolution1(String a, String b) {
-        //a一定是较大数，若不是，手动将a替换为较大数
+        // a一定是较大数，若不是，手动将a替换为较大数
         if (a.length() < b.length()) {
             String temp = a;
             a = b;
             b = temp;
         }
-        int carry = 0;           //控制是否进位
-        String r = "";           //结果
-        for (int i = a.length() - 1, j = b.length() - 1; i >= 0; i--) {        //i、j是双指针
-            int aa = a.charAt(i) == '0' ? 0 : 1, bb;     //aa —— 较大数的当前位，bb —— 较小数的当前位（aa、bb非0即1）
-            if (j >= 0) {      //控制较小数是否已被加完
-                bb = b.charAt(j) == '0' ? 0 : 1;         //bb赋值动作放在这是为了防止 out of range
+        // 控制是否进位
+        int carry = 0;
+        // 结果
+        String r = "";
+        // i、j是双指针
+        for (int i = a.length() - 1, j = b.length() - 1; i >= 0; i--) {
+            // aa —— 较大数的当前位，bb —— 较小数的当前位（aa、bb非0即1）
+            int aa = a.charAt(i) == '0' ? 0 : 1, bb;
+            // 控制较小数是否已被加完
+            if (j >= 0) {
+                // bb赋值动作放在这是为了防止 out of range
+                bb = b.charAt(j) == '0' ? 0 : 1;
                 switch (aa + bb + carry) {
                     case 0:
                         r = 0 + r;
@@ -99,7 +110,8 @@ public class AddBinary {
                         break;
                 }
                 j--;
-            } else {     //控制较大数加完较小数后剩余位的运算
+                // 控制较大数加完较小数后剩余位的运算
+            } else {
                 switch (aa + carry) {
                     case 0:
                         r = 0 + r;
@@ -123,7 +135,6 @@ public class AddBinary {
 
     static String LeetCodeSolution(String a, String b) {
         StringBuffer ans = new StringBuffer();
-
         int n = Math.max(a.length(), b.length()), carry = 0;
         for (int i = 0; i < n; ++i) {
             carry += i < a.length() ? (a.charAt(a.length() - 1 - i) - '0') : 0;
@@ -131,12 +142,10 @@ public class AddBinary {
             ans.append((char) (carry % 2 + '0'));
             carry /= 2;
         }
-
         if (carry > 0) {
             ans.append('1');
         }
         ans.reverse();
-
         return ans.toString();
     }
 }
