@@ -1,6 +1,7 @@
 package leetcode.simple;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -111,11 +112,11 @@ public class ValidParentheses {
     }
 
     public static boolean LeetCodeSolution(String s) {
-        HashMap<Character, Character> mappings = new HashMap<Character, Character>();
+        Map<Character, Character> mappings = new HashMap();
         mappings.put(')', '(');
         mappings.put('}', '{');
         mappings.put(']', '[');
-        Stack<Character> stack = new Stack<Character>();
+        Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             //右括号检查是否能闭合，左括号直接入栈

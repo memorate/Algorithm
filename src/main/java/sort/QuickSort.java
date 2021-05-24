@@ -4,8 +4,10 @@ import java.util.Arrays;
 
 /**
  * 快速排序
- * 在数组中选择一个基准点 pivot，遍历，将大于 pivot 的数据放在 pivot 的右边，小于 pivot 的数据放在 pivot 的坐边
+ * 在数组中选择一个基准点 pivot，遍历，将大于 pivot 的数据放在 pivot 的右边，小于 pivot 的数据放在 pivot 的左边
  * pivot 左边和右边的小数组在重复进行第一步，直到最后一次递归的数组中只有一个元素
+ *
+ * O(nlogn)
  *
  * 参考：
  * https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653195042&idx=1&sn=2b0915cd2298be9f2163cc90a3d464da&

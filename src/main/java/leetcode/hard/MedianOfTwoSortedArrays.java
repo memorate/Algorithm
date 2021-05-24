@@ -40,10 +40,37 @@ package leetcode.hard;
  */
 public class MedianOfTwoSortedArrays {
     public static void main(String[] args) {
-
+        System.out.println(new MedianOfTwoSortedArrays().findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4}));
     }
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length, n = nums2.length,
+                l = m + n, i = m-- + --n, last = 0;
+        for (; i >= l / 2 - 1; i--) {
+            if (m >= 0 && nums1[m] > nums2[n]) {
+                last = nums1[m];
+            } else {
+                last = nums2[n];
+            }
+        }
+        while (i >= l / 2 - 1) {
+            if (i == l / 2 - 1) {
+                if (l % 2 == 0) {
+                    last += m >= 0 && nums1[m] > nums2[n] ? nums1[m] : nums2[n];
+                    return (double) last / 2;
+                } else {
+                    return last;
+                }
+            }
+            if (m >= 0 && nums1[m] > nums2[n]) {
+                last = nums1[m];
+                if (m != 0) m--;
+            } else {
+                last = nums2[n];
+                if (n != 0) n--;
+            }
+            i--;
+        }
         return 0;
     }
 }
